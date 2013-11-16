@@ -4,7 +4,15 @@ block content
 
 	h1 Minhas cervejas
 
+	h2
+		blink= msg
+
+	a(href="/beers/create") Create
 	ul
 		for cerveja in cervejas
-			li #{cerveja.name} - #{cerveja.category} - 
-				a(href="/beers/#{cerveja._id}") Edit
+			li #{cerveja.name} - #{cerveja.category} 
+				a(href="/beers/update/#{cerveja._id}") Edit 
+				|
+				a(href="/beers/show/#{cerveja._id}") Show 
+				|
+				a(href="/beers/delete/#{cerveja._id}") Delete

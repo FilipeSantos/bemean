@@ -1,0 +1,20 @@
+extends ../layout
+
+block content
+
+	h1 #{cerveja.name}
+
+	p 
+		strong Teor Alcólico: 
+		| #{cerveja.alcohol}
+		br
+		strong Categoria: 
+		| #{cerveja.category}
+		br
+		strong Descrição: 
+		| #{cerveja.description}
+
+	p 
+		a(href="/beers/update/#{cerveja._id}") Edit
+		|
+		a(href="/beers/delete/#{cerveja._id}") Delete
