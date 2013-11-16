@@ -189,12 +189,14 @@ exports.delete = module.exports.delete = function(req, res){
           console.log(err);
           return err;
         } else {
-          res.render('beers/list', {cervejas: beers, msg: msg});
+          res.render('beers/list', {cervejas: beers, msg: msg, action: "DELETE"});
         }
       });
     }
   });
 }; 
+
+
 exports.list = module.exports.list = function(req, res){
  
   var query = {};
@@ -205,14 +207,23 @@ exports.list = module.exports.list = function(req, res){
     } else {
       res.render('beers/list', {cervejas: beers});
     }
-  });
- 
-}
- 
+  }); 
+} 
 exports.showCreate = function(req, res){
-  res.render('beers/form_create');
+  var beers ={
+    name: "",
+    description: "",
+    alcohol: "" ,
+    category: "",
+    ingredients: [{
+      name: "",
+      qnty: "",
+    }],
+    created: "",
+    updated: "",
+  };
+  res.render('beers/form', {cerveja: beers, action: "POST"});
 }
-
 exports.showDelete = function(req, res){
   var id= req.params.id;
   var query = { _id: id };
@@ -222,11 +233,10 @@ exports.showDelete = function(req, res){
       console.log(err);
       return err;
     } else {
-      res.render('beers/form_delete', {cerveja: beers});
+      res.render('beers/form', {cerveja: beers, action: "DELETE"});
     }
   });
 }
-
 exports.showUpdate = module.exports.showUpdate = function(req, res){
   var id= req.params.id;
   var query = { _id: id };
@@ -236,11 +246,10 @@ exports.showUpdate = module.exports.showUpdate = function(req, res){
       console.log(err);
       return err;
     } else {
-      res.render('beers/form_update', {cerveja: beers});
+      res.render('beers/form', {cerveja: beers, action: "PUT"});
     }
   });
 }
-
 exports.showBeer = module.exports.showBeer = function(req, res){
   var id= req.params.id;
   var query = { _id: id };
