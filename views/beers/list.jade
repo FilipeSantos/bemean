@@ -1,0 +1,10 @@
+extends ../layout
+
+block content
+
+	h1 Minhas cervejas
+
+	ul
+		for cerveja in cervejas
+			li #{cerveja.name} - #{cerveja.category} - 
+				a(href="/beers/#{cerveja._id}") Edit
